@@ -11,14 +11,14 @@ import { adduser } from '../utils/userSlice'
 const Body = () => {
   const dispatch=useDispatch();
   const navigate=useNavigate()
-
+ 
   
 
   const fetchuser=async()=>{
     try{
      
       const res=await axios.get(BASE_URL+"/profile/view",{withCredentials:true})
-      dispatch(adduser((await res).data))
+      dispatch(adduser((await res.data)))
     }catch(err){
       if(err.status===401){
 
