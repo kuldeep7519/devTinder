@@ -27,8 +27,8 @@ const Feed = () => {
  
   return Feeduser&&(
     <>
-    <div className="flex justify-center">
-      <ul className="menu menu-paged menu-vertical bg-base-200 rounded-box w-56 lg:w-auto">
+    <div className="flex flex-col md:flex-row items-center md:items-start justify-center gap-4 px-3 pb-20 w-full">
+  <ul className="menu menu-paged menu-vertical bg-base-200 rounded-box w-full max-w-xs md:w-56">
   <li><a>Home</a></li>
   <li><a>About</a></li>
   <li onClick={handleconnection}><a>Connections</a></li>

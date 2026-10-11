@@ -2,21 +2,25 @@ import React from "react";
 
 const UserCard = ({ user }) => {
   return (
-    <div className="card bg-black w-96 shadow-sm m-auto">
+    <div className="card bg-black w-full max-w-sm shadow-sm mx-auto overflow-hidden">
       <figure>
         <img
-          src="https://th.bing.com/th/id/OIP.iXSYbviP4gC2E0WkkOFdgAHaHa?w=231&h=220&c=7&r=0&o=7&dpr=1.5&pid=1.7&rm=3"
-          alt="Shoes"
-        />
+  className="w-full h-auto object-cover"
+  src="https://th.bing.com/th/id/OIP.iXSYbviP4gC2E0WkkOFdgAHaHa?w=231&h=220&c=7&r=0&o=7&dpr=1.5&pid=1.7&rm=3"
+  alt="Shoes"
+/>
       </figure>
       <div className="card-body">
         <h3></h3>
         <h2 className="card-title justify-center">
           {user.firstname + " " + user.lastname}
         </h2>
-        <div className="flex justify-center">
-          <button className="btn btn-primary rounded-full m-2 w-35">ignore</button>
-          <button className="btn btn-accent rounded-full m-2 w-35">
+        <div className="flex flex-wrap justify-center gap-2 px-2">
+          <button className="btn btn-primary rounded-full flex-1 min-w-0">
+  ignore
+</button>
+
+<button className="btn btn-accent rounded-full flex-1 min-w-0">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
