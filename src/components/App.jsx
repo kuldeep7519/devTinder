@@ -17,12 +17,13 @@ function App() {
     
      <BrowserRouter basename="/">
      <Routes>
+      <Route path="/login" element={<Login/>}></Route>
       <Route path="/" element={<Body/>}> 
       {/* this upper is the parent route  and lower one is childreen route
       another thing is to working of childreen route depend on the parent node with outlet 
       */}
         <Route path="/" element={<Feed/>}></Route>
-        <Route path="/login" element={<Login/>}></Route>
+        
         <Route path="/profile" element={<Profile/>}></Route>
         <Route path="/connection" element={<Connection/>}></Route>
       </Route>
