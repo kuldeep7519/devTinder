@@ -9,6 +9,9 @@ const Feed = () => {
   const Feeduser = useSelector((store) => store.feed);
   const dispatch = useDispatch();
   const navigate=useNavigate();
+  const handleRequest=async()=>{
+    navigate("/request")
+  }
   const handleconnection=()=>{
       navigate("/connection")
   }
@@ -24,6 +27,15 @@ const Feed = () => {
   useEffect(() => {
     feedapi();
   }, []);
+
+ 
+ if (Feeduser === null) {
+  return <div>Loading Feed...</div>;
+}
+
+if (Feeduser.length === 0) {
+  return <div>No users found!</div>;
+}
  
   return Feeduser&&(
     <>
@@ -32,9 +44,10 @@ const Feed = () => {
   <li><a>Home</a></li>
   <li><a>About</a></li>
   <li onClick={handleconnection}><a>Connections</a></li>
+  <li onClick={handleRequest}><a>Request</a></li>
    
 </ul>
-    <UserCard user={Feeduser[0]}/>
+    <UserCard user={Feeduser[0]} userid={Feeduser[0]._id}/>
     </div>
     </>
   );

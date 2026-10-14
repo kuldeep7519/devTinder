@@ -1,6 +1,35 @@
+import axios from "axios";
 import React from "react";
+import { useDispatch } from "react-redux";
+import { BASE_URL } from "../utils/constants";
+import { removeFeed } from "../utils/feedslice";
 
-const UserCard = ({ user }) => {
+const UserCard = ({ user,userid }) => {
+
+
+  const dispatch=useDispatch();
+  const handleIntrested=async()=>{
+    try{
+      const res=await axios.post(BASE_URL+"/request/send/intrested/"+userid,{},{withCredentials:true})
+      dispatch(removeFeed())
+      console.log(res.data)
+    }
+    catch(err){
+      console.error(err)
+    }
+    
+  }
+  const handleIgnore=async()=>{
+    try{
+   const res=  await axios.post(BASE_URL+"/request/send/ignored/"+userid,{},{withCredentials:true})
+   dispatch(removeFeed())
+console.log(res.data)
+    }
+    catch(err){
+      console.error(err)
+    }
+  }
+
   return (
     <div className="card bg-black w-full max-w-sm shadow-sm mx-auto overflow-hidden">
       <figure>
@@ -16,11 +45,11 @@ const UserCard = ({ user }) => {
           {user.firstname + " " + user.lastname}
         </h2>
         <div className="flex flex-wrap justify-center gap-2 px-2">
-          <button className="btn btn-primary rounded-full flex-1 min-w-0">
+          <button className="btn btn-primary rounded-full flex-1 min-w-0" onClick={handleIgnore}>
   ignore
 </button>
 
-<button className="btn btn-accent rounded-full flex-1 min-w-0">
+<button className="btn btn-accent rounded-full flex-1 min-w-0" onClick={handleIntrested}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"

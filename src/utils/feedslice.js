@@ -9,7 +9,10 @@ const FeedSlice=createSlice({
             return action.payload
         },
         removeFeed:(state,action)=>{
-            return null
+            if(state!==null && state.length>0){
+                return state.slice(1)
+            }
+            return state
         }
     }
 })
