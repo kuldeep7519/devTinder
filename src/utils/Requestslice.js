@@ -6,9 +6,11 @@ const RequestSlice=createSlice({
     reducers:{
         Addrequest:(state,aciton)=>{
             return aciton.payload
+        },
+        removerequest:(state,action)=>{
+            return null
         }
-        
     }
 })
-export const {Addrequest}=RequestSlice.actions
+export const {Addrequest,removerequest}=RequestSlice.actions
 export default RequestSlice.reducer

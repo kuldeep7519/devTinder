@@ -2,7 +2,7 @@ import axios from "axios";
 import { BASE_URL } from "../utils/constants";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Addrequest } from "../utils/Requestslice";
+import { Addrequest ,removerequest} from "../utils/Requestslice";
 
 const Request = () => {
   const dispatch = useDispatch();
@@ -35,6 +35,11 @@ const Request = () => {
   if (requests.length === 0) {
     return <div>No requests found!</div>;
   }
+  const handlerequest=async (status,_id)=>{
+    const res = await axios.post(BASE_URL+"/request/review/"+status+"/"+_id,{},{withCredentials:true})
+    dispatch(removerequest())
+    console.log(res)
+  }
 
   return (
     <div className="p-4">
@@ -56,13 +61,13 @@ const Request = () => {
             <p>{request.fromUserId.about}</p>
           </div>
 
-          <button className="btn btn-success">
+          <button className="btn btn-success " onClick={()=>handlerequest("accepted",request._id)}>
             Accept
           </button>
           
            
 
-          <button className="btn btn-error">
+          <button className="btn btn-error" onClick={()=>handlerequest("rejected",request._id)}>
             Reject
           </button>
         </div>
