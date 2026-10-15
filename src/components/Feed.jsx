@@ -17,7 +17,7 @@ const Feed = () => {
   }
   const feedapi = async () => {
     try {
-      const res = await axios.get(BASE_URL+"/user/feed", { withCredentials: true });
+      const res = await axios.get(BASE_URL+"/user/feed?page=1&limit=10", { withCredentials: true });
        console.log(res.data)
       dispatch(addFeed(res.data));
     } catch (err) {
@@ -29,15 +29,9 @@ const Feed = () => {
   }, []);
 
  
- if (Feeduser === null) {
-  return <div>Loading Feed...</div>;
-}
-
-if (Feeduser.length === 0) {
-  return <div>No users found!</div>;
-}
  
-  return Feeduser&&(
+ 
+  return (
     <>
     <div className="flex flex-col md:flex-row items-center md:items-start justify-center gap-4 px-3 pb-20 w-full">
   <ul className="menu menu-paged menu-vertical bg-base-200 rounded-box w-full max-w-xs md:w-56">
@@ -47,7 +41,18 @@ if (Feeduser.length === 0) {
   <li onClick={handleRequest}><a>Request</a></li>
    
 </ul>
-    <UserCard user={Feeduser[0]} userid={Feeduser[0]._id}/>
+   <div className="flex-1 flex justify-center">
+  {Feeduser === null ? (
+    <p>Loading Feed...</p>
+  ) : Feeduser.length === 0 ? (
+    <p>No users found!</p>
+  ) : (
+    <UserCard
+      user={Feeduser[0]}
+      userid={Feeduser[0]._id}
+    />
+  )}
+</div>
     </div>
     </>
   );

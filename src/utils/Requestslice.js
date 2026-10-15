@@ -8,7 +8,10 @@ const RequestSlice=createSlice({
             return aciton.payload
         },
         removerequest:(state,action)=>{
-            return null
+            if(state===null){
+                return state
+            }
+            return state.filter((request)=>request._id!=action.payload)
         }
     }
 })
